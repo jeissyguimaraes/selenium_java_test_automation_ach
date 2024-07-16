@@ -1,26 +1,27 @@
 # Selenium Java Test Automation Architecture
 
 ## Overview
-Este projeto de automação de testes foi desenvolvido utilizando Selenium e Java, seguindo os princípios de SOLID e boas práticas de código. O objetivo é fornecer uma base sólida para a automação de testes, garantindo código limpo, legível e manutenível.
+This project was developed using Selenium and Java, following SOLID principles and best coding practices. The goal is to provide a robust foundation for test automation, ensuring clean, readable, and maintainable code.
 
 ## Objectives
-- **🔍 Testes Automatizados**: Implementar uma solução automatizada de testes utilizando Selenium e Java.
-- **📊 Relatórios Extensivos**: Geração de relatórios detalhados com ExtentReports.
-- **🚀 Integração Fácil**: Assegurar que a solução seja fácil de integrar em pipelines CI/CD, fornecendo feedback imediato sobre mudanças na UI.
+- **🔍 Automated Testing**: Implement an automated testing solution using Selenium and Java.
+- **📊 Comprehensive Reports**: Generate detailed reports with ExtentReports.
+- **🚀 Easy Integration**: Ensure the solution is easy to integrate into CI/CD pipelines, providing immediate feedback on UI changes.
+- **🌐 Multi-browser Support**: Support for multiple browsers (Chrome, Firefox, Edge) including headless mode.
 
 ## Key Features
-- **🖥️ Sessões de Teste com ExtentReports**: Inicialização e encerramento de sessões de teste com ExtentReports, incluindo configuração do WebDriver.
-- **📸 Captura e Comparação Visual**: Captura de screenshots de páginas web e comparação com um baseline visual previamente definido.
-- **🔧 Configuração de WebDriver**: Configuração do WebDriver para suportar múltiplos navegadores.
-- **🤖 Automação com Selenium**: Utilização do Selenium para orquestrar o fluxo de testes, incluindo abertura de navegadores, navegação em páginas e execução de checkpoints.
+- **🖥️ Test Sessions with ExtentReports**: Initialization and closing of test sessions with ExtentReports, including WebDriver configuration.
+- **📸 Visual Capture and Comparison**: Capture screenshots of web pages and compare them with a previously defined visual baseline.
+- **🔧 WebDriver Configuration**: WebDriver configuration to support multiple browsers and headless mode.
+- **🤖 Automation with Selenium**: Use Selenium to orchestrate the test flow, including opening browsers, navigating pages, and executing checkpoints.
 
-## Tecnologias Utilizadas
-- **☕ Java**: Linguagem de programação utilizada para criar e gerenciar os casos de teste.
-- **🌐 Selenium**: Ferramenta de automação de navegador.
-- **🧪 TestNG**: Framework de testes utilizado para gerenciamento e execução de testes.
-- **📊 ExtentReports**: Ferramenta de geração de relatórios de testes.
-- **🔄 Jackson**: Biblioteca para manipulação de dados JSON.
-- **✨ Lombok**: Biblioteca para reduzir boilerplate de código.
+## Technologies Used
+- **☕ Java**: Programming language used to create and manage test cases.
+- **🌐 Selenium**: Browser automation tool.
+- **🧪 TestNG**: Testing framework used for managing and executing tests.
+- **📊 ExtentReports**: Tool for generating test reports.
+- **🔄 Jackson**: Library for handling JSON data.
+- **✨ Lombok**: Library to reduce boilerplate code.
 
 
 ## SOLID Principles and Best Practices
@@ -34,31 +35,37 @@ This project was developed following SOLID principles and best coding practices 
 - **Dependency Inversion Principle**: Depend on abstractions, not on concrete implementations.
 
 
-## Instalação
+## Installation
 
-1. **Clone o repositório e navegue até o diretório do projeto**:
+1. **Clone the repository and navigate to the project directory**:
     ```bash
-    git clone https://github.com/seu-usuario/selenium-java-test-automation-arch.git
-    cd selenium-java-test-automation-arch
+    git clone https://github.com/your-username/selenium_java_test_automation_ach.git
+    cd selenium_java_test_automation_ach
     ```
 
-2. **Instale as dependências**:
+2. **Install dependencies**:
     ```bash
     mvn clean install
     ```
 
-3. **Configure o WebDriver**:
-    Baixe o [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads) compatível com a versão do seu navegador e coloque-o no diretório `src/main/resources/drivers`.
+3. **Configure WebDriver**:
+    Download the browser drivers (ChromeDriver, GeckoDriver for Firefox, and EdgeDriver) compatible with your browser versions and place them in the `src/main/resources/drivers` directory.
 
-4. **Atualize o arquivo `config.properties`**:
-    Edite o arquivo `config.properties` em `src/main/resources` com as configurações do seu ambiente:
+4. **Update the `config.properties` file**:
+    Edit the `config.properties` file in `src/main/resources` with your environment settings:
 
     ```properties
     # Base URL of the site to be tested
     base.url=https://www.saucedemo.com/v1/
 
     # WebDriver configurations
+    webdriver.browser=chrome
+    webdriver.headless=false
+
+    # Paths to browser drivers
     webdriver.chrome.driver=src/main/resources/drivers/chromedriver
+    webdriver.firefox.driver=src/main/resources/drivers/geckodriver
+    webdriver.edge.driver=src/main/resources/drivers/edgedriver
 
     # Default timeout for explicit wait in seconds
     default.explicit.wait=10
@@ -67,14 +74,14 @@ This project was developed following SOLID principles and best coding practices 
     environment=development
     ```
 
-## Executando os Testes
+## Running the Tests
 
-1. **Execute os testes**:
+1. **Run the tests**:
     ```bash
     mvn test
     ```
 
-Os relatórios de testes serão gerados no diretório `test-output` e podem ser visualizados abrindo o arquivo `extent-report.html` em um navegador.
+Test reports will be generated in the `test-output` directory and can be viewed by opening the `extent-report.html` file in a browser.
 
 ## Estrutura do Projeto
 

@@ -36,7 +36,7 @@ public abstract class BaseTest {
 
     private void initializeDriver() {
         if (driver == null) {
-            driver = DriverManager.initializeDriver("chrome");
+            driver = DriverManager.initializeDriver();
             driver.get(configLoader.getProperty("base.url"));
         }
     }
