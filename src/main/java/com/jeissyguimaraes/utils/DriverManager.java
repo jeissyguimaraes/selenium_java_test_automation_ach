@@ -26,6 +26,10 @@ public class DriverManager {
                 chromeOptions.addArguments("--no-sandbox");
                 chromeOptions.addArguments("--remote-allow-origins=*");
                 chromeOptions.addArguments("--start-maximized");
+                chromeOptions.addArguments("--disable-dev-shm-usage"); // Fixes issues with shared resources in Docker
+                chromeOptions.addArguments("--whitelisted-ips");
+                chromeOptions.addArguments("--disable-infobars");
+                chromeOptions.addArguments("--disable-notifications");
                 driver = new ChromeDriver(chromeOptions);
                 break;
 

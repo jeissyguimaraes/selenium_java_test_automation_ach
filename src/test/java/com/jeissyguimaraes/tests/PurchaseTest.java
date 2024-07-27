@@ -14,6 +14,7 @@ public class PurchaseTest extends BaseTest {
 
     @Test
     public void testCompletePurchase() {
+        
         DataLoader loginDataLoader = new DataLoader("login_data.json");
         LoginPage loginPage = new LoginPage(driver);
         ProductsPage productsPage = new ProductsPage(driver);

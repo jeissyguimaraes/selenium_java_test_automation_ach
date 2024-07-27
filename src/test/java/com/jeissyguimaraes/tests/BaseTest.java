@@ -9,6 +9,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 public abstract class BaseTest {
+    
     protected WebDriver driver;
     protected ExtentTest test;
     private ConfigLoader configLoader;
