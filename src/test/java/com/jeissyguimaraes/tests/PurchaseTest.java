@@ -22,7 +22,7 @@ public class PurchaseTest extends BaseTest {
         CheckoutPage checkoutPage = new CheckoutPage(driver);
 
         User user = DataGenerator.generateUser();
-        String expectedOrderConfirmationMessage = "THANK YOU FOR YOUR ORDER";
+        String expectedOrderConfirmationMessage = "THANK YOU FOR YOUR ORDE";
 
         loginPage.login(loginDataLoader.getProperty("username"), loginDataLoader.getProperty("password"));
         productsPage.addProductToCart();
