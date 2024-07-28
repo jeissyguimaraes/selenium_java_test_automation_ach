@@ -4,11 +4,7 @@ USER root
 
 # Install dependencies, OpenJDK, Git, Maven, Chrome, and ChromeDriver
 RUN apt-get update && \
-    apt-get install -y gnupg2 curl git openjdk-17-jdk maven unzip wget && \
-    curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | apt-key add - && \
-    sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list' && \
-    apt-get update && \
-    apt-get install -y jenkins && \
+    apt-get install -y gnupg2 curl git openjdk-17-jdk maven unzip wget xvfb && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Google Chrome
@@ -20,8 +16,8 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add
 
 # Install ChromeDriver
 ENV CHROME_DRIVER_VERSION=127.0.6533.72
-RUN wget -N https://storage.googleapis.com/chrome-for-testing-public/${CHROME_DRIVER_VERSION}/linux64/chromedriver-linux64.zip -P /tmp && \
-    unzip /tmp/chromedriver-linux64.zip -d /tmp && \
+RUN wget -N https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip -P /tmp && \
+    unzip /tmp/chromedriver_linux64.zip -d /tmp && \
     mv /tmp/chromedriver /usr/local/bin/chromedriver && \
     chown root:root /usr/local/bin/chromedriver && \
     chmod 0755 /usr/local/bin/chromedriver
