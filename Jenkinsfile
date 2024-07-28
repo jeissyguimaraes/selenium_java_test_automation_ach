@@ -14,16 +14,10 @@ pipeline {
                 git url: 'https://github.com/jeissyguimaraes/selenium_java_test_automation_ach.git', branch: 'main', credentialsId: 'github-token'
             }
         }
-        stage('Verify Files') {
-            steps {
-                echo "Verifying the presence of login_data.json..."
-                sh 'ls -la src/test/resources/data/'
-                sh 'cat src/test/resources/data/login_data.json'
-            }
-        }
         stage('Static Code Analysis') {
             steps {
                 echo "Performing static code analysis with PMD..."
+                // Example with PMD
                 sh 'mvn pmd:pmd'
                 publishHTML(target: [
                     reportName: 'PMD Report',
