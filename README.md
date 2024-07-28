@@ -154,9 +154,9 @@ Test reports will be generated in the `test-output` directory and can be viewed 
 - **📄 version: '3.8'**: Specifies the Docker Compose version.
 - **🔧 services**: Defines the services to be run.
 - **🏗 jenkins**: The Jenkins service.
-        - **🔨 build**: Builds the Dockerfile in the current directory.
-        - **🌐 ports**: Maps host ports to container ports.
-        - **💾 volumes**: Defines a volume for Jenkins home directory persistence.
+     - **🔨 build**: Builds the Dockerfile in the current directory.
+     - **🌐 ports**: Maps host ports to container ports.
+     - **💾 volumes**: Defines a volume for Jenkins home directory persistence.
 
 
 3. **Jenkinsfile**
