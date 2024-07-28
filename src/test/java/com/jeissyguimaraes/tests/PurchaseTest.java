@@ -15,7 +15,7 @@ public class PurchaseTest extends BaseTest {
     @Test(groups = "regression_test")
     public void testCompletePurchase() {
         
-        DataLoader loginDataLoader = new DataLoader("\"data/login_data.json\"");
+        DataLoader loginDataLoader = new DataLoader("src/test/resources/data/login_data.json"); 
         LoginPage loginPage = new LoginPage(driver);
         ProductsPage productsPage = new ProductsPage(driver);
         CartPage cartPage = new CartPage(driver);

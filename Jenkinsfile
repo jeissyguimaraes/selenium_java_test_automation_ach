@@ -30,18 +30,6 @@ pipeline {
                 }
             }
         }
-        /*
-        stage('Security Scanning') {
-            steps {
-                echo "Performing security scanning with OWASP Dependency Check..."
-                timeout(time: 10, unit: 'MINUTES') {
-                    // Example with OWASP Dependency Check
-                    sh 'mvn org.owasp:dependency-check-maven:check'
-                    dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
-                }
-            }
-        }
-        */
         stage('Build') {
             steps {
                 echo "Building the project..."
@@ -134,7 +122,7 @@ pipeline {
                     emailext(
                         subject: "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${currentBuild.result})",
                         body: "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${currentBuild.result}) \nMore info at: ${env.BUILD_URL}",
-                        to: 'jeissguimaraes@gmail.com'
+                        to: 'jeissyguimaraes@gmail.com'
                     )
                 }
             }
