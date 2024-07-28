@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 public class PurchaseTest extends BaseTest {
 
-    @Test
+    @Test(groups = "regression_test")
     public void testCompletePurchase() {
         
         DataLoader loginDataLoader = new DataLoader("login_data.json");
@@ -22,7 +22,7 @@ public class PurchaseTest extends BaseTest {
         CheckoutPage checkoutPage = new CheckoutPage(driver);
 
         User user = DataGenerator.generateUser();
-        String expectedOrderConfirmationMessage = "THANK YOU FOR YOUR ORDE";
+        String expectedOrderConfirmationMessage = "THANK YOU FOR YOUR ORDER";
 
         loginPage.login(loginDataLoader.getProperty("username"), loginDataLoader.getProperty("password"));
         productsPage.addProductToCart();

@@ -12,11 +12,8 @@ public class DriverManager {
 
     public static WebDriver initializeDriver(String browserType, boolean headless) {
         WebDriver driver = null;
-        ConfigLoader configLoader = new ConfigLoader();
-
         switch (browserType.toLowerCase()) {
             case "chrome":
-                System.setProperty("webdriver.chrome.driver", configLoader.getProperty("webdriver.chrome.driver"));
                 ChromeOptions chromeOptions = new ChromeOptions();
                 if (headless) {
                     chromeOptions.addArguments("--headless");
@@ -34,7 +31,6 @@ public class DriverManager {
                 break;
 
             case "firefox":
-                System.setProperty("webdriver.gecko.driver", configLoader.getProperty("webdriver.firefox.driver"));
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 if (headless) {
                     firefoxOptions.addArguments("--headless");
@@ -43,7 +39,6 @@ public class DriverManager {
                 break;
 
             case "edge":
-                System.setProperty("webdriver.edge.driver", configLoader.getProperty("webdriver.edge.driver"));
                 EdgeOptions edgeOptions = new EdgeOptions();
                 if (headless) {
                     edgeOptions.addArguments("--headless");
