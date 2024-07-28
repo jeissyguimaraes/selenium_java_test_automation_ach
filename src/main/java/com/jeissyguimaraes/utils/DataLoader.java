@@ -1,25 +1,32 @@
 package com.jeissyguimaraes.utils;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.File;
 import java.io.IOException;
-import java.util.Map;
+import java.io.InputStream;
+import java.util.Properties;
 
 public class DataLoader {
-    private Map<String, String> data;
+
+    private Properties properties;
 
     public DataLoader(String fileName) {
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            data = mapper.readValue(new File("src/test/resources/data/" + fileName), new TypeReference<Map<String, String>>() {});
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to load data from JSON file: " + fileName, e);
+        properties = new Properties();
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream(fileName)) {
+            if (input == null) {
+                throw new IOException("Sorry, unable to find " + fileName);
+            }
+            properties.load(input);
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 
-    public String getProperty(String key) {
-        return data.get(key);
+    /**
+     * Gets a property value by key.
+     *
+     * @param key the key to look for.
+     * @return the value associated with the key.
+     */
+    public String getProperty(final String key) {
+        return properties.getProperty(key);
     }
 }

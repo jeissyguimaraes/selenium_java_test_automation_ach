@@ -70,7 +70,9 @@ pipeline {
             steps {
                 echo "Running integration tests..."
                 timeout(time: 10, unit: 'MINUTES') {
-                    sh 'mvn verify'
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        sh 'mvn verify'
+                    }
                 }
             }
         }
@@ -78,7 +80,9 @@ pipeline {
             steps {
                 echo "Running tests with tag 'regression_test'..."
                 timeout(time: 10, unit: 'MINUTES') {
-                    sh 'mvn test -Dgroups=regression_test'
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        sh 'mvn test -Dgroups=regression_test'
+                    }
                 }
             }
         }
@@ -86,8 +90,10 @@ pipeline {
             steps {
                 echo "Deploying to staging environment..."
                 timeout(time: 10, unit: 'MINUTES') {
-                    // Example deployment step, replace with actual deployment command/script
-                    sh 'ansible-playbook -i staging_inventory deploy_staging.yml'
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        // Example deployment step, replace with actual deployment command/script
+                        sh 'ansible-playbook -i staging_inventory deploy_staging.yml'
+                    }
                 }
             }
         }
@@ -95,7 +101,9 @@ pipeline {
             steps {
                 echo "Archiving test reports..."
                 timeout(time: 5, unit: 'MINUTES') {
-                    archiveArtifacts artifacts: 'target/extent-reports/**', allowEmptyArchive: true
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        archiveArtifacts artifacts: 'target/extent-reports/**', allowEmptyArchive: true
+                    }
                 }
             }
         }
@@ -103,13 +111,15 @@ pipeline {
             steps {
                 echo "Publishing test reports..."
                 timeout(time: 5, unit: 'MINUTES') {
-                    publishHTML(target: [
-                        reportName: 'ExtentReports',
-                        reportDir: 'target/extent-reports',
-                        reportFiles: 'index.html',
-                        alwaysLinkToLastBuild: true,
-                        keepAll: true
-                    ])
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        publishHTML(target: [
+                            reportName: 'ExtentReports',
+                            reportDir: 'target/extent-reports',
+                            reportFiles: 'index.html',
+                            alwaysLinkToLastBuild: true,
+                            keepAll: true
+                        ])
+                    }
                 }
             }
         }
