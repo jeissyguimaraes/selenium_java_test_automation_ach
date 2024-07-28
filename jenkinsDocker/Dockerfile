@@ -22,22 +22,25 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add
 ENV CHROME_DRIVER_VERSION=127.0.6533.72
 RUN wget -N https://storage.googleapis.com/chrome-for-testing-public/${CHROME_DRIVER_VERSION}/linux64/chromedriver-linux64.zip -P /tmp && \
     unzip /tmp/chromedriver-linux64.zip -d /tmp && \
-    mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver && \
+    mv /tmp/chromedriver /usr/local/bin/chromedriver && \
     chown root:root /usr/local/bin/chromedriver && \
     chmod 0755 /usr/local/bin/chromedriver
-
-# Copy project files to the container
-COPY . /usr/share/jenkins/
 
 # Create directory for Jenkins and set permissions
 RUN mkdir -p /usr/share/jenkins && \
     chmod -R 777 /usr/share/jenkins
+
+# Copy the project files into the container
+COPY . /usr/share/jenkins/
 
 # Download Jenkins WAR file
 RUN curl -o /usr/share/jenkins/jenkins.war -fsSL https://get.jenkins.io/war-stable/latest/jenkins.war
 
 # Ensure the Jenkins war file is present
 RUN ls -l /usr/share/jenkins
+
+# Set the working directory
+WORKDIR /usr/share/jenkins
 
 # Start Jenkins
 CMD ["java", "-jar", "/usr/share/jenkins/jenkins.war"]
