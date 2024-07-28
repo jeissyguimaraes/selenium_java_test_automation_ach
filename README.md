@@ -22,7 +22,8 @@ This project was developed using Selenium and Java, following SOLID principles a
 - **📊 ExtentReports**: Tool for generating test reports.
 - **🔄 Jackson**: Library for handling JSON data.
 - **✨ Lombok**: Library to reduce boilerplate code.
-
+- **⚙️ Jenkins**: Continuous integration and continuous deployment server.
+- **🐳 Docker**: Platform for developing, shipping, and running applications in containers.
 
 ## SOLID Principles and Best Practices
 
