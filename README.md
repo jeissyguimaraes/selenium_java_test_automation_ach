@@ -20,7 +20,6 @@ This project was developed using Selenium and Java, following SOLID principles a
 - **🌐 Selenium**: Browser automation tool.
 - **🧪 TestNG**: Testing framework used for managing and executing tests.
 - **📊 ExtentReports**: Tool for generating test reports.
-- **🔄 Jackson**: Library for handling JSON data.
 - **✨ Lombok**: Library to reduce boilerplate code.
 - **⚙️ Jenkins**: Continuous integration and continuous deployment server.
 - **🐳 Docker**: Platform for developing, shipping, and running applications in containers.
@@ -354,5 +353,4 @@ selenium_java_test_automation_arch/
  |       |           |-- BaseTest.java
  |       |           `-- PurchaseTest.java
  |       `-- resources/
- |           `-- data/
- |               `-- login_data.json
+ |          

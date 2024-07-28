@@ -29,3 +29,5 @@ jenkinsDocker/jenkins-cli.jar
 # Ignore sensitive files
 .env
 config/
+.vscode/
+test-output/

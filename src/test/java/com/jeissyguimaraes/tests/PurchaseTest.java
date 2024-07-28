@@ -5,7 +5,6 @@ import com.jeissyguimaraes.ui.pages.CartPage;
 import com.jeissyguimaraes.ui.pages.CheckoutPage;
 import com.jeissyguimaraes.ui.pages.LoginPage;
 import com.jeissyguimaraes.ui.pages.ProductsPage;
-import com.jeissyguimaraes.utils.DataLoader;
 import com.jeissyguimaraes.utils.DataGenerator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -15,7 +14,10 @@ public class PurchaseTest extends BaseTest {
     @Test(groups = "regression_test")
     public void testCompletePurchase() {
         
-        DataLoader loginDataLoader = new DataLoader("src/test/resources/data/login_data.json"); 
+        String username =  "standard_user";
+        String password = "secret_sauce";
+
+
         LoginPage loginPage = new LoginPage(driver);
         ProductsPage productsPage = new ProductsPage(driver);
         CartPage cartPage = new CartPage(driver);
@@ -24,7 +26,7 @@ public class PurchaseTest extends BaseTest {
         User user = DataGenerator.generateUser();
         String expectedOrderConfirmationMessage = "THANK YOU FOR YOUR ORDER";
 
-        loginPage.login(loginDataLoader.getProperty("username"), loginDataLoader.getProperty("password"));
+        loginPage.login(username, password);
         productsPage.addProductToCart();
         cartPage.clickCheckout();
         checkoutPage.finishPurchase(user.getFirstName(), user.getLastName(), user.getPostalCode());
