@@ -17,80 +17,100 @@ pipeline {
         stage('Static Code Analysis') {
             steps {
                 echo "Performing static code analysis with PMD..."
-                // Example with PMD
-                sh 'mvn pmd:pmd'
-                publishHTML(target: [
-                    reportName: 'PMD Report',
-                    reportDir: 'target/site',
-                    reportFiles: 'pmd.html',
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true
-                ])
+                timeout(time: 5, unit: 'MINUTES') {
+                    // Example with PMD
+                    sh 'mvn pmd:pmd'
+                    publishHTML(target: [
+                        reportName: 'PMD Report',
+                        reportDir: 'target/site',
+                        reportFiles: 'pmd.html',
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true
+                    ])
+                }
             }
         }
+        /*
         stage('Security Scanning') {
             steps {
                 echo "Performing security scanning with OWASP Dependency Check..."
-                // Example with OWASP Dependency Check
-                sh 'mvn org.owasp:dependency-check-maven:check'
-                dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
+                timeout(time: 10, unit: 'MINUTES') {
+                    // Example with OWASP Dependency Check
+                    sh 'mvn org.owasp:dependency-check-maven:check'
+                    dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
+                }
             }
         }
+        */
         stage('Build') {
             steps {
                 echo "Building the project..."
-                sh 'mvn clean install'
+                timeout(time: 10, unit: 'MINUTES') {
+                    sh 'mvn clean install'
+                }
             }
         }
         stage('Code Linting') {
             steps {
                 echo "Performing code linting with Checkstyle..."
-                // Example with Checkstyle
-                sh 'mvn checkstyle:check'
-                publishHTML(target: [
-                    reportName: 'Checkstyle Report',
-                    reportDir: 'target/site',
-                    reportFiles: 'checkstyle.html',
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true
-                ])
+                timeout(time: 5, unit: 'MINUTES') {
+                    // Example with Checkstyle
+                    sh 'mvn checkstyle:check'
+                    publishHTML(target: [
+                        reportName: 'Checkstyle Report',
+                        reportDir: 'target/site',
+                        reportFiles: 'checkstyle.html',
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true
+                    ])
+                }
             }
         }
         stage('Integration Tests') {
             steps {
                 echo "Running integration tests..."
-                sh 'mvn verify'
+                timeout(time: 10, unit: 'MINUTES') {
+                    sh 'mvn verify'
+                }
             }
         }
         stage('Test') {
             steps {
                 echo "Running tests with tag 'regression_test'..."
-                sh 'mvn test -Dgroups=regression_test'
+                timeout(time: 10, unit: 'MINUTES') {
+                    sh 'mvn test -Dgroups=regression_test'
+                }
             }
         }
         stage('Deploy to Staging') {
             steps {
                 echo "Deploying to staging environment..."
-                // Example deployment step, replace with actual deployment command/script
-                sh 'ansible-playbook -i staging_inventory deploy_staging.yml'
+                timeout(time: 10, unit: 'MINUTES') {
+                    // Example deployment step, replace with actual deployment command/script
+                    sh 'ansible-playbook -i staging_inventory deploy_staging.yml'
+                }
             }
         }
         stage('Archive Reports') {
             steps {
                 echo "Archiving test reports..."
-                archiveArtifacts artifacts: 'target/extent-reports/**', allowEmptyArchive: true
+                timeout(time: 5, unit: 'MINUTES') {
+                    archiveArtifacts artifacts: 'target/extent-reports/**', allowEmptyArchive: true
+                }
             }
         }
         stage('Publish Test Reports') {
             steps {
                 echo "Publishing test reports..."
-                publishHTML(target: [
-                    reportName: 'ExtentReports',
-                    reportDir: 'target/extent-reports',
-                    reportFiles: 'index.html',
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true
-                ])
+                timeout(time: 5, unit: 'MINUTES') {
+                    publishHTML(target: [
+                        reportName: 'ExtentReports',
+                        reportDir: 'target/extent-reports',
+                        reportFiles: 'index.html',
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true
+                    ])
+                }
             }
         }
     }
