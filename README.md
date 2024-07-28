@@ -125,9 +125,9 @@ Test reports will be generated in the `test-output` directory and can be viewed 
      ```
 **Explanation:**
 
-- **FROM debian**: Uses the latest Debian image as the base.
-- **RUN apt-get update && ...:**: Installs dependencies like Java, Git, Maven Chrome, and ChromeDriver.
-- **CMD ["java", "-jar", "/usr/share/jenkins/jenkins.war"]:**: Starts Jenkins.
+- **🛠 FROM debian**: Uses the latest Debian image as the base.
+- **📦 RUN apt-get update && ...:**: Installs dependencies like Java, Git, Maven Chrome, and ChromeDriver.
+- **🚀 CMD ["java", "-jar", "/usr/share/jenkins/jenkins.war"]:**: Starts Jenkins.
 
 
 2. **docker-compose.yml**
@@ -151,12 +151,12 @@ Test reports will be generated in the `test-output` directory and can be viewed 
 
 **Explanation:**
 
-- **version: '3.8'**: Specifies the Docker Compose version.
-- **services**: Defines the services to be run.
-- **jenkins**: The Jenkins service.
-- **build**: Builds the Dockerfile in the current directory.
-- **ports**: Maps host ports to container ports.
-- **volumes**: Defines a volume for Jenkins home directory persistence.
+- **📄 version: '3.8'**: Specifies the Docker Compose version.
+- **🔧 services**: Defines the services to be run.
+- **🏗 jenkins**: The Jenkins service.
+        - **🔨 build**: Builds the Dockerfile in the current directory.
+        - **🌐 ports**: Maps host ports to container ports.
+        - **💾 volumes**: Defines a volume for Jenkins home directory persistence.
 
 
 3. **Jenkinsfile**
