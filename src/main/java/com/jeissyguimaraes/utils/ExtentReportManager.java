@@ -10,13 +10,22 @@ public class ExtentReportManager {
     private static ExtentSparkReporter sparkReporter;
 
     public static void setup() {
-        sparkReporter = new ExtentSparkReporter(System.getProperty("user.dir") + "/target/extent-reports/extent-report.html");
+        // Definindo o caminho para salvar o relatório no diretório target/extent-reports
+        String reportPath = System.getProperty("user.dir") + "/target/extent-reports/extent-report.html";
+        
+        // Configurando o ExtentSparkReporter
+        sparkReporter = new ExtentSparkReporter(reportPath);
         sparkReporter.config().setDocumentTitle("Automation Test Report");
         sparkReporter.config().setReportName("Functional Test Report");
         sparkReporter.config().setTheme(Theme.STANDARD);
+        sparkReporter.config().setEncoding("UTF-8");  // Garantindo a codificação correta
 
+        // Configurando o ExtentReports
         extent = new ExtentReports();
         extent.attachReporter(sparkReporter);
+        extent.setSystemInfo("Host Name", "Localhost");
+        extent.setSystemInfo("Environment", "Test");
+        extent.setSystemInfo("User Name", "jeissyguimaraes");
     }
 
     public static ExtentReports getExtent() {
@@ -28,6 +37,8 @@ public class ExtentReportManager {
     }
 
     public static void flush() {
-        extent.flush();
+        if (extent != null) {
+            extent.flush();
+        }
     }
 }
