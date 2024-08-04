@@ -49,7 +49,16 @@ pipeline {
         stage('Archive Reports') {
             steps {
                 echo "Archiving test reports..."
-                archiveArtifacts artifacts: 'target/extent-reports/**', allowEmptyArchive: true
+                // Verify if reports are generated before archiving
+                script {
+                    def reportDir = 'target/extent-reports'
+                    if (fileExists(reportDir)) {
+                        echo "Archiving reports from ${reportDir}"
+                        archiveArtifacts artifacts: "${reportDir}/**", allowEmptyArchive: true
+                    } else {
+                        error "Report directory ${reportDir} does not exist"
+                    }
+                }
             }
         }
         stage('Publish Test Reports') {
@@ -58,7 +67,7 @@ pipeline {
                 publishHTML(target: [
                     reportName: 'ExtentReports',
                     reportDir: 'target/extent-reports',
-                    reportFiles: 'index.html',
+                    reportFiles: 'extent-report.html',
                     alwaysLinkToLastBuild: true,
                     keepAll: true
                 ])
@@ -69,16 +78,6 @@ pipeline {
         always {
             echo "Running post-build actions..."
             junit '**/target/surefire-reports/*.xml'
-            script {
-                if (currentBuild.result == 'FAILURE') {
-                    echo "Build failed. Sending email notification..."
-                    emailext(
-                        subject: "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${currentBuild.result})",
-                        body: "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${currentBuild.result}) \nMore info at: ${env.BUILD_URL}",
-                        to: 'jeissyguimaraes@gmail.com'
-                    )
-                }
-            }
         }
     }
 }

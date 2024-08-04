@@ -10,7 +10,7 @@ public class ExtentReportManager {
     private static ExtentSparkReporter sparkReporter;
 
     public static void setup() {
-        sparkReporter = new ExtentSparkReporter(System.getProperty("user.dir") + "/test-output/extent-report.html");
+        sparkReporter = new ExtentSparkReporter(System.getProperty("user.dir") + "/target/extent-reports/extent-report.html");
         sparkReporter.config().setDocumentTitle("Automation Test Report");
         sparkReporter.config().setReportName("Functional Test Report");
         sparkReporter.config().setTheme(Theme.STANDARD);
