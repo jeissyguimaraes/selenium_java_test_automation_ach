@@ -161,112 +161,6 @@ Test reports will be generated in the `test-output` directory and can be viewed 
 
 3. **Jenkinsfile**
 
-```
-pipeline {
-    agent any
-
-    stages {
-        stage('Clean Workspace') {
-            steps {
-                deleteDir() // Cleans the workspace before starting the build
-            }
-        }
-        stage('Checkout') {
-            steps {
-                git url: 'https://github.com/jeissyguimaraes/selenium_java_test_automation_ach.git', branch: 'main', credentialsId: 'github-token'
-            }
-        }
-        stage('Static Code Analysis') {
-            steps {
-                // Example with PMD
-                sh 'mvn pmd:pmd'
-                publishHTML(target: [
-                    reportName: 'PMD Report',
-                    reportDir: 'target/site',
-                    reportFiles: 'pmd.html',
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true
-                ])
-            }
-        }
-        stage('Security Scanning') {
-            steps {
-                // Example with OWASP Dependency Check
-                sh 'mvn org.owasp:dependency-check-maven:check'
-                dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
-            }
-        }
-        stage('Build') {
-            steps {
-                sh 'mvn clean install'
-            }
-        }
-        stage('Code Linting') {
-            steps {
-                // Example with Checkstyle
-                sh 'mvn checkstyle:check'
-                publishHTML(target: [
-                    reportName: 'Checkstyle Report',
-                    reportDir: 'target/site',
-                    reportFiles: 'checkstyle.html',
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true
-                ])
-            }
-        }
-        stage('Integration Tests') {
-            steps {
-                sh 'mvn verify'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test -Dgroups=regression_test'
-            }
-        }
-        stage('Deploy to Staging') {
-            steps {
-                // Example deployment step, replace with actual deployment command/script
-                sh 'ansible-playbook -i staging_inventory deploy_staging.yml'
-            }
-        }
-        stage('Archive Reports') {
-            steps {
-                archiveArtifacts artifacts: 'target/extent-reports/**', allowEmptyArchive: true
-            }
-        }
-        stage('Publish Test Reports') {
-            steps {
-                publishHTML(target: [
-                    reportName: 'ExtentReports',
-                    reportDir: 'target/extent-reports',
-                    reportFiles: 'index.html',
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true
-                ])
-            }
-        }
-    }
-    post {
-        always {
-            junit '**/target/surefire-reports/*.xml'
-            script {
-                if (currentBuild.result == 'FAILURE') {
-                    emailext(
-                        subject: "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${currentBuild.result})",
-                        body: "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${currentBuild.result}) \nMore info at: ${env.BUILD_URL}",
-                        to: 'you@example.com'
-                    )
-                }
-            }
-        }
-    }
-}
-
-```
-
-**Explanation:**
-
 - **Clean Workspace**: Deletes the workspace to start fresh.
 - **Checkout**: Clones the Git repository.
 - **Static Code Analysis**: Runs PMD for static code analysis and publishes the report.
@@ -278,7 +172,6 @@ pipeline {
 - **Deploy to Staging**: Deploys the build to the staging environment (replace with actual deployment steps).
 - **Archive Reports**: Archives the test reports.
 - **Publish Test Reports**: Publishes the ExtentReports to Jenkins.
-
 
 
 ## Running Jenkins with Docker
@@ -320,14 +213,24 @@ This project uses Jenkins for continuous integration and ExtentReports for gener
 **Jenkins Execution**
 The images below show the Jenkins interface after running the automated test job. You can observe the pipeline configuration, the status of previous runs, and the test results trend report:
 
-![Jenkins Execution - Job Status](./images/Captura de tela de 2024-08-04 18-13-40.png)
-![Jenkins Execution - Run History](./images/Captura de tela de 2024-08-04 18-13-29.png)
+<p align="center">
+  <img src="./images/Captura de tela de 2024-08-04 18-13-40.png" alt="Jenkins Execution" width="600" style="border: 2px solid black; margin: 10px;">
+</p>
+<p align="center">
+  <img src="./images/Captura de tela de 2024-08-04 18-13-29.png" alt="Jenkins Execution" width="600" style="border: 2px solid black; margin: 10px;">
+</p>
+
 
 **ExtentReport**
 ExtentReport generates detailed reports with visualizations of the tests performed, indicating which passed, failed, or were skipped. Below is an example of a generated report:
 
-![ExtentReport - Overview](./images/Captura de tela de 2024-08-04 18-16-07.png)
-![ExtentReport - Test Details](./images/Captura de tela de 2024-08-04 18-16-15.png)
+<p align="center">
+  <img src="./images/Captura de tela de 2024-08-04 18-16-07.png" alt="ExtentReport - Overview" width="600" style="border: 2px solid black; margin: 10px;">
+</p>
+<p align="center">
+  <img src="./images/Captura de tela de 2024-08-04 18-16-15.png" alt="ExtentReport - Test Details" width="600" style="border: 2px solid black; margin: 10px;">
+</p>
+
 
 ## Estrutura do Projeto
 
