@@ -12,6 +12,7 @@ public class DataGenerator {
         user.setFirstName(faker.name().firstName());
         user.setLastName(faker.name().lastName());
         user.setPostalCode(faker.address().zipCode());
+        
         return user;
     }
 }

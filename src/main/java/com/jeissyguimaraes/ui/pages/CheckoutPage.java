@@ -12,18 +12,27 @@ public class CheckoutPage extends BasePage {
 
     // Method to enter first name
     public void enterFirstName(String firstName) {
+        if (firstName == null || firstName.isEmpty()) {
+            throw new IllegalArgumentException("First name must be set");
+        }
         WebElement firstNameField = waitForVisibility(CheckoutSelectors.FIRST_NAME_FIELD);
         firstNameField.sendKeys(firstName);
     }
 
     // Method to enter last name
     public void enterLastName(String lastName) {
+        if (lastName == null || lastName.isEmpty()) {
+            throw new IllegalArgumentException("Last name must be set");
+        }
         WebElement lastNameField = waitForVisibility(CheckoutSelectors.LAST_NAME_FIELD);
         lastNameField.sendKeys(lastName);
     }
 
     // Method to enter postal code
     public void enterPostalCode(String postalCode) {
+        if (postalCode == null || postalCode.isEmpty()) {
+            throw new IllegalArgumentException("Postal code must be set");
+        }
         WebElement postalCodeField = waitForVisibility(CheckoutSelectors.POSTAL_CODE_FIELD);
         postalCodeField.sendKeys(postalCode);
     }
@@ -55,6 +64,4 @@ public class CheckoutPage extends BasePage {
         scrollToElement(CheckoutSelectors.FINISH_BUTTON);
         clickFinish();
     }
-
-  
 }

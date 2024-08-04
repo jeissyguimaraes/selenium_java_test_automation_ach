@@ -13,10 +13,6 @@ public class PurchaseTest extends BaseTest {
 
     @Test(groups = "regression_test")
     public void testCompletePurchase() {
-        
-        String username =  "standard_user";
-        String password = "secret_sauce";
-
 
         LoginPage loginPage = new LoginPage(driver);
         ProductsPage productsPage = new ProductsPage(driver);
@@ -25,6 +21,9 @@ public class PurchaseTest extends BaseTest {
 
         User user = DataGenerator.generateUser();
         String expectedOrderConfirmationMessage = "THANK YOU FOR YOUR ORDER";
+        String username ="standard_user";
+        String password = "secret_sauce";
+
 
         loginPage.login(username, password);
         productsPage.addProductToCart();
