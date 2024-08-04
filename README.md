@@ -214,10 +214,10 @@ This project uses Jenkins for continuous integration and ExtentReports for gener
 The images below show the Jenkins interface after running the automated test job. You can observe the pipeline configuration, the status of previous runs, and the test results trend report:
 
 <p align="center">
-  <img src="./images/Captura de tela de 2024-08-04 18-13-40.png" alt="Jenkins Execution" width="600" style="border: 2px solid black; margin: 10px;">
+  <img src="src/test/resources/images/Captura de tela de 2024-08-04 18-13-40.png" alt="Jenkins Execution" width="600" style="border: 2px solid black; margin: 10px;">
 </p>
 <p align="center">
-  <img src="./images/Captura de tela de 2024-08-04 18-13-29.png" alt="Jenkins Execution" width="600" style="border: 2px solid black; margin: 10px;">
+  <img src="src/test/resources/images/Captura de tela de 2024-08-04 18-13-29.png" alt="Jenkins Execution" width="600" style="border: 2px solid black; margin: 10px;">
 </p>
 
 
@@ -225,12 +225,11 @@ The images below show the Jenkins interface after running the automated test job
 ExtentReport generates detailed reports with visualizations of the tests performed, indicating which passed, failed, or were skipped. Below is an example of a generated report:
 
 <p align="center">
-  <img src="./images/Captura de tela de 2024-08-04 18-16-07.png" alt="ExtentReport - Overview" width="600" style="border: 2px solid black; margin: 10px;">
+  <img src="src/test/resources/images/Captura de tela de 2024-08-04 18-16-07.png" alt="ExtentReport - Overview" width="600" style="border: 2px solid black; margin: 10px;">
 </p>
 <p align="center">
-  <img src="./images/Captura de tela de 2024-08-04 18-16-15.png" alt="ExtentReport - Test Details" width="600" style="border: 2px solid black; margin: 10px;">
+  <img src="src/test/resources/images/Captura de tela de 2024-08-04 18-16-15.png" alt="ExtentReport - Test Details" width="600" style="border: 2px solid black; margin: 10px;">
 </p>
-
 
 ## Estrutura do Projeto
 
