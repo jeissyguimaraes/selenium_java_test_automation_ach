@@ -1,8 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Sample Suite" verbose="1">
-    <test name="Sample Tests">
+<suite name="Sample Suite" verbose="1" parallel="false" >
+    <test name="Tests">
         <classes>
             <class name="com.jeissyguimaraes.tests.PurchaseTest"/>
+            <!-- Adicione outras classes de teste conforme necessário -->
         </classes>
     </test>
 </suite>

@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 public class PurchaseTest extends BaseTest {
 
-    @Test(groups = "regression_test")
+    @Test
     public void testCompletePurchase() {
 
         LoginPage loginPage = new LoginPage(driver);

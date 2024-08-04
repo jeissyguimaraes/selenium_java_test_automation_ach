@@ -42,8 +42,8 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "Running tests with tag 'regression_test'..."
-                sh 'mvn test -Dgroups=regression_test'
+                echo "Running tests ..."
+                sh 'mvn clean test'
             }
         }
         stage('Archive Reports') {
