@@ -314,7 +314,20 @@ pipeline {
     ```
     Replace <user> and <api_token> with your Jenkins user and API token, and <command> with the Jenkins CLI command you want to execute.
 
+## Jenkins Execution and ExtentReport
+This project uses Jenkins for continuous integration and ExtentReports for generating detailed test reports. Below are the screenshots showing the execution of the job in Jenkins and the ExtentReport.
 
+**Jenkins Execution**
+The images below show the Jenkins interface after running the automated test job. You can observe the pipeline configuration, the status of previous runs, and the test results trend report:
+
+![Jenkins Execution - Job Status](./images/Captura de tela de 2024-08-04 18-13-40.png)
+![Jenkins Execution - Run History](./images/Captura de tela de 2024-08-04 18-13-29.png)
+
+**ExtentReport**
+ExtentReport generates detailed reports with visualizations of the tests performed, indicating which passed, failed, or were skipped. Below is an example of a generated report:
+
+![ExtentReport - Overview](./images/Captura de tela de 2024-08-04 18-16-07.png)
+![ExtentReport - Test Details](./images/Captura de tela de 2024-08-04 18-16-15.png)
 
 ## Estrutura do Projeto
 
@@ -353,4 +366,9 @@ selenium_java_test_automation_arch/
  |       |           |-- BaseTest.java
  |       |           `-- PurchaseTest.java
  |       `-- resources/
- |          
+ |           |-- images/
+ |           |   |-- Captura de tela de 2024-08-04 18-13-40.png
+ |           |   |-- Captura de tela de 2024-08-04 18-13-29.png
+ |           |   |-- Captura de tela de 2024-08-04 18-16-07.png
+ |           |   `-- Captura de tela de 2024-08-04 18-16-15.png
+ |           `-- config.properties
